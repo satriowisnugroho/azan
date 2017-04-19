@@ -1,0 +1,32 @@
+{
+  "name": "azan",
+  "version": "1.0.0",
+  "description": "Azan clock",
+  "main": "index.js",
+  "dependencies": {
+    "cheerio": "^0.22.0",
+    "colors": "^1.1.2",
+    "moment": "^2.18.1",
+    "request": "^2.81.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "azan",
+    "adzan",
+    "salat",
+    "sholat"
+  ],
+  "author": "Satrio Wisnugroho <wisnugrohosatrio@gmail.com> (https://satriowisnugroho.me)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/satriowisnugroho/azan.git"
+  },
+  "bugs": {
+    "url": "https://github.com/satriowisnugroho/azan/issues"
+  },
+  "homepage": "https://github.com/satriowisnugroho/azan#readme"
+}
