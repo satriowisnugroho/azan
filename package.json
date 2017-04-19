@@ -2,6 +2,7 @@
   "name": "azan",
   "version": "1.0.0",
   "description": "Azan clock",
+  "bin": "index.js",
   "main": "index.js",
   "dependencies": {
     "cheerio": "^0.22.0",
@@ -20,7 +21,7 @@
     "sholat"
   ],
   "author": "Satrio Wisnugroho <wisnugrohosatrio@gmail.com> (https://satriowisnugroho.me)",
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/satriowisnugroho/azan.git"
