@@ -2,17 +2,21 @@
   "name": "azan",
   "version": "1.0.0",
   "description": "Azan clock",
-  "bin": "index.js",
+  "bin": {
+    "azan": "index.js"
+  },
   "main": "index.js",
   "dependencies": {
     "cheerio": "^0.22.0",
     "colors": "^1.1.2",
     "moment": "^2.18.1",
+    "node-env-file": "^0.1.8",
     "request": "^2.81.0"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "cp .env.example .env;chmod g=rw .env"
   },
   "keywords": [
     "azan",
