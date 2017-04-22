@@ -91,7 +91,7 @@ const azan = {
     console.log(`\n.:| ${city.name} - ${moment().format('DD MMMM YYYY')} |:.\n`);
 
     if (found) {
-      let time = azan.setTime(found);
+      let time = azan.getTime(found);
       console.log(`Azan ${found.name} at ${found.time} - ${time.yellow} left\n`);
     }
 
@@ -101,7 +101,7 @@ const azan = {
 
     console.log('\n');
   },
-  setTime: found => {
+  getTime: found => {
     let time = '';
     let hour = Math.floor(found.diff / 60 / 60);
 
