@@ -2,6 +2,11 @@
 
 Indonesia Azan clock
 
+## Installation
+```
+npm install -g azan
+```
+
 ## Usage
 
 ```
