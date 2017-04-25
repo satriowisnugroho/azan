@@ -26,7 +26,7 @@ if (flag === '--help' || flag === '-h') {
   let city = cities.find(city => {
     return city.id === parseInt(flag.split('=')[1]);
   });
-  
+
   if (typeof city === 'undefined') {
     console.log('City not found')
   } else {
@@ -46,7 +46,7 @@ let cityId = process.env.CITY_ID;
 let city = cities.find(city => {
   return city.id === parseInt(cityId);
 });
-let url = `http://www.jadwalsholat.org/adzan/ajax/ajax.daily1.php?id=${cityId}`;
+let url = `https://jadwalsholat.org/adzan/monthly.php?id=${cityId}`;
 
 request(url, (err, res, body) => {
   if (err) throw err;
@@ -59,21 +59,21 @@ const azan = {
     azan.print(data);
   },
   getData: $ => {
-    let data = [], found = null;
+    let times = [], found = null;
 
-    $('tr').each((i, value) => {
-      if (i < 2 || i > 6) return;
+    $('tr.table_highlight').find('td').each((i, value) => {
+      if (i < 1) return;
+      let header = $('tr.table_header').find('td').eq(i).text();
+      let time = $(value).text();
 
-      let td = $(value).find('td');
-
-      data.push({
-        name: td.eq(0).text(),
-        time: td.eq(1).text(),
-        diff: moment(td.eq(1).text(), 'HH:mm').diff(moment(), 'second'),
+      times.push({
+        name: header,
+        time: time,
+        diff: i === 1 || i === 3 || i === 4 ? -1 : moment(time, 'HH:mm').diff(moment(), 'second')
       });
     });
 
-    data.some(val => {
+    times.some(val => {
       if (val.diff >= 0) {
         found = val;
         return true;
@@ -81,7 +81,7 @@ const azan = {
     });
 
     return {
-      azans: data,
+      times: times,
       found: found
     };
   },
@@ -95,7 +95,7 @@ const azan = {
       console.log(`Azan ${found.name} at ${found.time} - ${time.yellow} left\n`);
     }
 
-    data.azans.forEach(val => {
+    data.times.forEach(val => {
       console.log(`${val.name.blue}\t${val.time.green}`);
     });
 
