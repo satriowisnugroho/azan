@@ -12,11 +12,15 @@ npm install -g azan
 ```
 $ azan
 ```
+Print monthly prayer times.
+```
+$ azan --monthly
+```
 
 ## Configuration
 
 ```
-$ azan --city="CITY_ID"
+$ azan --city=CITY_ID
 ```
 Available city
 ```
