@@ -115,11 +115,12 @@ const azan = {
     return time;
   },
   getMonthly: $ => {
+    process.stdout.write('\n');
     $('table.table_adzan tr[align=center]').each((i, value) => {
       $(value).find('td').each((j, data) => {
         if ($(value).attr('class') === 'table_highlight')
           return process.stdout.write($(data).text().red + '\t');
-        return process.stdout.write($(data).text() + '\t');
+        return process.stdout.write(i === 0 ? `${$(data).text().blue}\t` : `${$(data).text()}\t`);
       });
       process.stdout.write('\n');
     });
