@@ -1,7 +1,7 @@
 {
   "name": "azan",
-  "version": "1.0.2",
-  "description": "Azan clock",
+  "version": "1.0.3",
+  "description": "Indonesia prayer times",
   "bin": {
     "azan": "index.js"
   },

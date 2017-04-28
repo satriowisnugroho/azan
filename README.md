@@ -1,6 +1,6 @@
 # azan
 
-Indonesia Azan clock
+Indonesia Prayer Times
 
 <h1 align="center">
 	<img width="250" src="https://github.com/satriowisnugroho/azan/raw/master/media/daily.jpeg" alt="daily">
