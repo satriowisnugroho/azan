@@ -6,7 +6,6 @@ require('colors');
 const request = require('request');
 const cheerio = require('cheerio');
 const moment = require('moment');
-const assert = require('assert');
 const env = require('node-env-file');
 const cities = require('./cities');
 const fs = require('fs');
@@ -18,8 +17,10 @@ let cityList = cities.map(city => {
 let flag = process.argv[2];
 if (flag === '--help' || flag === '-h') {
   console.log('Usage: azan [options]\n');
-  console.log('Options:\n  --city: City id e.g. `307`\n');
-  console.log('Cities:');
+  console.log('Options:');
+  console.log('  --city\tcity id e.g. `307`');
+  console.log('  --monthly\tprint monthly prayer times');
+  console.log('\nCities:');
   console.log(JSON.stringify(cityList, null, 1));
   process.exit();
 } else if (flag && flag.split('=')[0] === '--city') {
@@ -55,6 +56,9 @@ request(url, (err, res, body) => {
 
 const azan = {
   load: (body) => {
+    if (flag === '--monthly') {
+      return azan.getMonthly(cheerio.load(body));
+    }
     let data = azan.getData(cheerio.load(body));
     azan.print(data);
   },
@@ -109,5 +113,15 @@ const azan = {
     time += Math.floor(found.diff / 60 % 60) + ' m';
 
     return time;
+  },
+  getMonthly: $ => {
+    $('table.table_adzan tr[align=center]').each((i, value) => {
+      $(value).find('td').each((j, data) => {
+        if ($(value).attr('class') === 'table_highlight')
+          return process.stdout.write($(data).text().red + '\t');
+        return process.stdout.write($(data).text() + '\t');
+      });
+      process.stdout.write('\n');
+    });
   }
 };
