@@ -69,11 +69,12 @@ const azan = {
       if (i < 1) return;
       let header = $('tr.table_header').find('td').eq(i).text();
       let time = $(value).text();
+      let other = i === 1 || i === 3 || i === 4;
 
       times.push({
-        name: header,
-        time: time,
-        diff: i === 1 || i === 3 || i === 4 ? -1 : moment(time, 'HH:mm').diff(moment(), 'second')
+        name: other ? header : header.blue,
+        time: other ? time : time.green,
+        diff: other ? -1 : moment(time, 'HH:mm').diff(moment(), 'second')
       });
     });
 
@@ -100,7 +101,7 @@ const azan = {
     }
 
     data.times.forEach(val => {
-      console.log(`${val.name.blue}\t${val.time.green}`);
+      console.log(`${val.name}\t${val.time}`);
     });
 
     console.log('\n');
